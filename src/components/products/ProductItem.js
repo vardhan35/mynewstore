@@ -33,7 +33,7 @@ export default ProductItem
 
 const ProdDiv = styled.div`
 max-width:350px;
-height:500px;
+/* height:500px; */
 margin:2em 2em;
 background-color:white;
 display:flex;

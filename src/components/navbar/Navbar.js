@@ -1,21 +1,33 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import {auth, provider} from '../../firebase'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
-import {selectUserName, selectUserEmail, selectUserPhoto, setUserLoginDetails, setSignoutState} from '../../redux/user/userSlice'
+import {selectUserName, selectUserPhoto, setUserLoginDetails, setSignoutState} from '../../redux/user/userSlice'
 
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const username = useSelector(selectUserName);
-    const useremail = useSelector(selectUserEmail);
+    // const useremail = useSelector(selectUserEmail);
     const userphoto = useSelector(selectUserPhoto);
 
 
+    useEffect(()=>{
+        auth.onAuthStateChanged(async (user)=>{
+            if(user){
+                dispatch(setUserLoginDetails({
+                    name : user.displayName,
+                    email: user.email,
+                    photo : user.photoURL,
+                }));
+                history.push('/');
+            }
+        })
+    })
 
     const handleAuth = () =>{
         if(!username){

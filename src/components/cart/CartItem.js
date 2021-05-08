@@ -3,40 +3,76 @@ import {useDispatch} from 'react-redux'
 import styled from 'styled-components';
 import {removeFromCart} from '../../redux/cart/cartSlice'
 
-const CartItem = ({cartData}) => {
+const CartItem = ({item}) => {
     const dispatch = useDispatch(removeFromCart);
     return (
-        <Container>
-            <h1>{cartData.name}</h1>
-            <Button onClick={()=>dispatch(removeFromCart(cartData.id))} >Remove From Cart</Button>
-        </Container>
+        <ItemDiv key={item.id}>
+        <img src={item.image} alt={item.name} />
+        <Iteminfo>
+            <h1>{item.name}</h1>
+            <p>Price : {item.price},Rupees</p>
+            <p>Ratings : ⭐⭐⭐⭐</p>
+        </Iteminfo>
+        <Itemaction>
+            <Button type='button' onClick={()=>dispatch(removeFromCart(item.id))}>Remove from Cart</Button>
+        </Itemaction>
+    </ItemDiv>
         )
 }
 
 export default CartItem;
 
 
-const Container = styled.div`
-    max-width:770px;
-    margin:1em 0.25em;
-    color:#3a4750;
-    background-color:#eeeeee;
-    padding:1em 0.5em;
-    border-radius:0.25em;
+const ItemDiv = styled.div`
+max-width:350px;
+/* height:500px; */
+margin:2em 2em;
+background-color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+box-shadow:0 5px 20px rgba(0,0,0,0.090);
+img{
+    width:300px;
+    height:350px;
+    margin:0.5em auto;
+    padding:1em;
+}
+`
+const Iteminfo = styled.div`
+text-align:left;
+margin-left:1em;
+h1{
+    margin:0.12em auto;
+};
+p{
+    margin:0.12em auto;
+}
+`
+
+const Itemaction = styled.div`
+width:100%;
+margin:auto;
+text-align:center;
 `
 
 const Button = styled.button`
-    background-color:#303841;
-    max-width:210px;
-    color:#ffff;
-    height:35px;
-    border-radius:0.2em;
-    padding:0.5em;
-    font-size:1rem;
-    border:none;
-    margin:1em auto 0 ;
-    :hover{
-        transform:scale(1.02);
-        background-color:#3a4750;
-    }
+color:white;
+max-width:300px;
+width:90%;
+height:40px;
+font-size:1rem;
+margin:1em auto;
+border:none;
+border-radius:0.25em;
+/* font-weight:500; */
+cursor: pointer;
+background-color:#303841;
+/* background-image: linear-gradient(to right bottom, #3a4750, #37434c, #353f49, #323c45, #303841); */
+&:hover{
+    transform:scale(1.02);
+    transition:all 0.5s ease;
+    background-color:#3a4750, 
+}
+
 `
