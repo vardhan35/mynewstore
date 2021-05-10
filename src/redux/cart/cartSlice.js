@@ -26,12 +26,18 @@ export const cartSlice = createSlice({
                 userCart : state.userCart.filter(item => item.id !== action.payload),
             }
         },
+        adjustQty : (state, action, qty)=>{
+            return{
+                ...state,
+                userCart : state.userCart.map(item => item.id === +action.payload.id ? {...item, qty : +action.payload.qty} : item)
+            }
+        }
     }
 })
 
 
 
-export const { setProducts,addToCart, removeFromCart } = cartSlice.actions;
+export const { setProducts,addToCart, removeFromCart, adjustQty } = cartSlice.actions;
 
 export const selectclothing = (state) => state.cart.clothing;
 export const selectuserCart = (state) => state.cart.userCart;

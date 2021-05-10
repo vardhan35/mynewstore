@@ -18,7 +18,7 @@ const ProductItem = ({product}) => {
             <ProdDiv key={product.id}>
                 <img src={product.image} alt={product.name} />
                 <Prodinfo>
-                    <h1>{product.name}</h1>
+                    <h2>{product.name}</h2>
                     <p>Price : {product.price},Rupees</p>
                     <p>Ratings : ⭐⭐⭐⭐</p>
                 </Prodinfo>
@@ -32,19 +32,18 @@ const ProductItem = ({product}) => {
 export default ProductItem
 
 const ProdDiv = styled.div`
-max-width:350px;
-/* height:500px; */
-margin:2em 2em;
+width:300px;
+height:450px;
+margin:2em 1em 0 1em;
 background-color:white;
 display:flex;
 flex-direction:column;
 justify-content:center;
-box-shadow:0 5px 20px rgba(0,0,0,0.090);
+box-shadow:0 5px 30px rgba(0,0,0,0.090);
 img{
-    width:300px;
-    height:350px;
+    width:250px;
+    height:250px;
     margin:0.5em auto;
-    padding:1em;
 }
 `
 
@@ -60,26 +59,26 @@ p{
 `
 const Prodaction = styled.div`
 width:100%;
-margin:auto;
+margin:0.5em auto 0 auto;
 text-align:center;
 `
 const Button = styled.button`
 color:white;
 max-width:300px;
-width:90%;
+width:80%;
 height:40px;
 font-size:1rem;
-margin:1em auto;
+margin:1em auto 0 auto;
 border:none;
 border-radius:0.25em;
-/* font-weight:500; */
 cursor: pointer;
 background-color:#303841;
-/* background-image: linear-gradient(to right bottom, #3a4750, #37434c, #353f49, #323c45, #303841); */
 &:hover{
     transform:scale(1.02);
     transition:all 0.5s ease;
     background-color:#3a4750, 
 }
-
+&:active{
+    background-color:#eeeeee;
+}
 `

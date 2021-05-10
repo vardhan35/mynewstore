@@ -1,20 +1,22 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
 import styled from 'styled-components';
-import {removeFromCart} from '../../redux/cart/cartSlice'
+import {removeFromCart,addToCart} from '../../redux/cart/cartSlice'
 
 const CartItem = ({item}) => {
-    const dispatch = useDispatch(removeFromCart);
+    const dispatch = useDispatch();
+    console.log('hello', item.qty);
     return (
-        <ItemDiv key={item.id}>
+    <ItemDiv key={item.id}>
         <img src={item.image} alt={item.name} />
         <Iteminfo>
-            <h1>{item.name}</h1>
-            <p>Price : {item.price},Rupees</p>
+            <h2>{item.name}</h2>
+            <p>Price : {item.price},₹</p>
             <p>Ratings : ⭐⭐⭐⭐</p>
         </Iteminfo>
         <Itemaction>
-            <Button type='button' onClick={()=>dispatch(removeFromCart(item.id))}>Remove from Cart</Button>
+            <Buton type='button' onClick={()=>dispatch(addToCart(item.id))}>Add Quantity({item.qty})</Buton>
+            <Button type='button' onClick={()=>dispatch(removeFromCart(item.id))}>Remove</Button>
         </Itemaction>
     </ItemDiv>
         )
@@ -24,19 +26,18 @@ export default CartItem;
 
 
 const ItemDiv = styled.div`
-max-width:350px;
-/* height:500px; */
-margin:2em 2em;
+width:265px;
+height:420px;
+margin:2em 1em 0 1em;
 background-color:white;
 display:flex;
 flex-direction:column;
 justify-content:center;
 box-shadow:0 5px 20px rgba(0,0,0,0.090);
 img{
-    width:300px;
-    height:350px;
+    width:220px;
+    height:220px;
     margin:0.5em auto;
-    padding:1em;
 }
 `
 const Iteminfo = styled.div`
@@ -51,28 +52,48 @@ p{
 `
 
 const Itemaction = styled.div`
-width:100%;
-margin:auto;
-text-align:center;
+width:90%;
+margin:1em auto;
+display:flex;
+justify-content:space-between;
 `
 
 const Button = styled.button`
 color:white;
-max-width:300px;
-width:90%;
+width:40%;
 height:40px;
 font-size:1rem;
-margin:1em auto;
+margin:1 auto 0.5em 0.5em;
 border:none;
 border-radius:0.25em;
-/* font-weight:500; */
 cursor: pointer;
-background-color:#303841;
-/* background-image: linear-gradient(to right bottom, #3a4750, #37434c, #353f49, #323c45, #303841); */
+/* background-color:#303841; */
+background-color:#df4759;
 &:hover{
     transform:scale(1.02);
     transition:all 0.5s ease;
     background-color:#3a4750, 
 }
-
+&:active{
+    background-color:#eeeeee;
+}
+`
+const Buton = styled.button`
+color:white;
+width:55%;
+height:40px;
+font-size:1rem;
+margin:1 auto 0.5em 0.5em;
+border:none;
+border-radius:0.25em;
+cursor: pointer;
+background-color:#303841;
+&:hover{
+    transform:scale(1.02);
+    transition:all 0.5s ease;
+    background-color:#3a4750, 
+}
+&:active{
+    background-color:#eeeeee;
+}
 `
