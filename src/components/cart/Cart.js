@@ -3,13 +3,15 @@ import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 import { selectuserCart } from '../../redux/cart/cartSlice'
 import CartItem from './CartItem'
-
+import EmptyCart from './EmptyCart'
+import {device} from '../../media'
 
 const Cart = () => {
     const cartItems = useSelector(selectuserCart);
     return (
         <Container>
-            {   cartItems.length === 0 ? <h1>😜Cart Empty😜</h1> :
+            {   cartItems.length === 0 ? <EmptyCart/>
+            :
                 cartItems.map((item)=>{
                     return <CartItem key={item.id} item={item}/>
                 })
@@ -20,33 +22,14 @@ const Cart = () => {
 export default Cart;
 
 const Container = styled.div`
-max-width:1280px;
-width:90%;
-margin:80px auto;
+max-width:896px;
+width:70%;
+margin:0 1em;
 display:flex;
 flex-wrap:wrap;
-justify-content:center;
+justify-content:flex-start;
+@media ${device.laptop}{
+    width:90%;
+    margin:0 auto;
+}
 `
-
-
-// const CartDiv = styled.div`
-// margin-left:0.25em;
-// width:800px;
-// display:block;
-// `
-
-
-// const Profile = styled.div`
-//     width:200px;
-//     margin:1em auto;
-//     padding:1em;
-//     position:fixed;
-//     right:16%;
-//     height:70vh;
-//     color:#3a4750;
-//     background-color:#eeeeee;
-//     border-radius:0.25em;
-//     overflow:auto;
-// `
-
-

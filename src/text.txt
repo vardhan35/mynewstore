@@ -1,7 +1,0 @@
-colors 
-
-yello : #f6c90e,
-white #fffff,
-pale white : #eeeeee,
-dark : #303841,
-lighter dark : #3a4750, 
