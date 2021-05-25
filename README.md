@@ -2,5 +2,3 @@
 
 ## BUilt with styled Components
 
-### 
-### `npm test`
